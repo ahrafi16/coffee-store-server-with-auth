@@ -83,6 +83,14 @@ async function run() {
             res.send(result);
         })
 
+        // get a single user by id
+        app.get('/users/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: new ObjectId(id) };
+            const result = await usersCollection.findOne(query);
+            res.send(result);
+        })
+
         // post user to the database
         app.post('/users', async (req, res) => {
             const userProfile = req.body;
